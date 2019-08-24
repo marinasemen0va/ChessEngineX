@@ -1,6 +1,6 @@
 # Chess Engine X
 
-#####**last updated 24/08/19** || *still a work in progress*
+**last updated 24/08/19** || *still a work in progress*
 
 Research related to chess engines
 ------
