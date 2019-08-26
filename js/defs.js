@@ -41,3 +41,12 @@ const SQUARES = {
 
 // boolean definitions
 const BOOL = {FALSE: 0, TRUE: 1};
+
+// files and ranks board array definitions
+var FilesBrd = new Array(BRD_SQ_NUM);
+var RanksBrd = new Array (BRD_SQ_NUM);
+
+// function that returns the board square for a given file and rank
+function FR2SQ (f, r) {
+    return ((21 + f) + (r * 10));
+}
