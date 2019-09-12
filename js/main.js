@@ -2,6 +2,9 @@
     Main JavaScript file
  */
 
+$(function() {
+    init();
+});
 
 // initialization of files, ranks, and the board
 function InitFilesRanksBrd () {
@@ -23,7 +26,20 @@ function InitFilesRanksBrd () {
     }
 }
 
+// initialize random keys
+function InitHashKeys () {
+    for (let x = 0; x < 14 * 120; x++){
+        PieceKeys[x] = RAND_32();
+    }
+    SideKey = RAND_32();
+
+    for (let x = 0; x < 14 * 120; x++){
+        CastleKeys[x] = RAND_32();
+    }
+}
+
 // initialization
 function init() {
-    // code
+    InitFilesRanksBrd();
+    InitHashKeys();
 }
