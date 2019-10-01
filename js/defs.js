@@ -45,6 +45,11 @@ const SQUARES = {
 // boolean definitions
 const BOOL = {FALSE: 0, TRUE: 1};
 
+// define maximums
+const MAXGAMEMOVES = 2048;
+const MAXPOSITIONMOVES = 256;
+const MAXDEPTH = 64;
+
 // files and ranks board array definitions
 var FilesBrd = new Array(BRD_SQ_NUM);
 var RanksBrd = new Array (BRD_SQ_NUM);

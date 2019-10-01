@@ -2,31 +2,6 @@
     Board setup file
  */
 
-/*
-    loop (pieces[])
-        if (piece on square == side to move (white or black))
-            then generateMoves() for square
-
-    squareOfPiece = pieceListArray[index] // for a given piece, what square is it on?
-
-    index?
-
-    wP * 10 + wPNum -> 0 based index of num of pieces(GameBoard.pceNum)
-    wN * 10 + wNnum
-
-    say we have 4 white pawns GameBoard.pceNum[wP] = 4
-
-    for(pceNum = 0; pceNum < GameBoard.pceNum[wP]; ++pceNum) {
-        sq = PlistArray[wP * 10 + pceNum]
-    }
-
-    sq1 = PlistArray[wP * 10 + 0]
-    sq2 = PlistArray[wP * 10 + 1]
-    sq3 = PlistArray[wP * 10 + 2]
-    sq4 = PlistArray[wP * 10 + 3]
-
-    wP 10 - 19, wN 20 - 29
- */
 function PCEINDEX(pce, pceNum) {
     return (pce * 10 + pceNum)
 }
@@ -46,6 +21,9 @@ GameBoard.material = new Array(2);
 GameBoard.pceNum = new Array(13); // how many of each type  of piece is there
 GameBoard.pList = new Array(14 * 10); // list of pieces
 GameBoard.posKey = 0; // unique num that represents pos on the board, used for repetition detection, stores previous moves, 3 duplicate moves in chess = draw
+GameBoard.moveList = new Array(MAXDEPTH * MAXPOSITIONMOVES); // store list of moves that board has in given position
+GameBoard.moveScores = new Array(MAXDEPTH * MAXPOSITIONMOVES); // moves generated given a score
+GameBoard.moveListStart = new Array(MAXDEPTH); // where the move list will start for given depth
 
 // put in the random values
 function GeneratePosKey() {
@@ -65,4 +43,36 @@ function GeneratePosKey() {
     }
     finalKey ^= CastleKeys[GameBoard.castlePerm]; // hash castle perms
     return finalKey;
+}
+
+// reset board
+function ResetBoard() {
+    for (let x = 0; x < BRD_SQ_NUM; x++) {
+        GameBoard.pieces[x] = SQUARES.OFFBOARD;
+    }
+    for (let x = 0; x < 64; x++) {
+        GameBoard.pieces[SQ120(x)] = PIECES.EMPTY;
+    }
+    for (let x = 0; x < 14 * 120; x++) {
+        GameBoard.pList[x] = PIECES.EMPTY;
+    }
+    for (let x = 0; x < 2; x++) {
+        GameBoard.material[x] = 0;
+    }
+    for (let x = 0; x < 13; x++) {
+        GameBoard.pceNum[x] = 0;
+    }
+    GameBoard.side = COLOURS.BOTH;
+    GameBoard.enPas = SQUARES.NO_SQ;
+    GameBoard.fiftyMove = 0;
+    GameBoard.ply = 0;
+    GameBoard.hisPly = 0;
+    GameBoard.castlePerm = 0;
+    GameBoard.posKey = 0;
+    GameBoard.moveListStart[GameBoard.ply] = 0;
+}
+
+// convert inputted string into board format
+function ParseFen(fen) {
+    ResetBoard();
 }
