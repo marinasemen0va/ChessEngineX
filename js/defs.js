@@ -70,12 +70,26 @@ const PieceRookQueen = [BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.TRU
 const PieceBishopQueen = [BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.TRUE, BOOL.FALSE, BOOL.TRUE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.TRUE, BOOL.FALSE, BOOL.TRUE, BOOL.FALSE];
 const PieceSlides = [BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.TRUE, BOOL.TRUE, BOOL.TRUE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.TRUE, BOOL.TRUE, BOOL.TRUE, BOOL.FALSE];
 
+// define keys
+const PieceKeys = new Array(14 * 120); // piece keys, represent keys on a square
+let SideKey; // hash in or out depending on which side to move
+const CastleKeys = new Array(16); // castle permission = 1111 (15)
+
+// define arrays
+let Sq120ToSq64 = new Array(BRD_SQ_NUM);
+let Sq64ToSq120 = new Array(64);
+
 // generation of 4 random numbers filling 8 bits and shifted 3 nums varying amounts to the left to get a good coverage of all the 32 bits
 function RAND_32() { //TODO: actually 31
     return (Math.floor((Math.random()*255) + 1) << 23) | (Math.floor((Math.random()*255) + 1) << 16) | (Math.floor((Math.random()*255) + 1) << 8) | Math.floor((Math.random()*255) + 1);
 }
 
-// define keys
-const PieceKeys = new Array(14 * 120); // piece keys, represent keys on a square
-let SideKey; // hash in or out depending on which side to move
-const CastleKeys = new Array(16); // castle permission = 1111 (15)
+// covert helper method
+function SQ64(sq120) {
+    return Sq120ToSq64[sq120];
+}
+
+// covert helper method
+function SQ120(sq64) {
+    return Sq64ToSq120[sq64];
+}

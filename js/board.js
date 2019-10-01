@@ -53,14 +53,14 @@ function GeneratePosKey() {
     var piece = PIECES.EMPTY;
     for(let sq = 0; sq < BRD_SQ_NUM; ++sq) { // get piece on a square, if piece not empty and not offboard = key at that place = hash in random key
         piece = GameBoard.pieces[sq];
-        if(piece != PIECES.EMPTY && piece != SQUARES.OFFBOARD) {
+        if(piece !== PIECES.EMPTY && piece !== SQUARES.OFFBOARD) {
             finalKey ^= PieceKeys[(piece * 120) + sq];
         }
     }
-    if(GameBoard.side == COLOURS.WHITE) { // if move is white then hash in SideKey
+    if(GameBoard.side === COLOURS.WHITE) { // if move is white then hash in SideKey
         finalKey ^= SideKey;
     }
-    if(GameBoard.enPas != SQUARES.NO_SQ) { // if emp square is not no square then hash in ampersand
+    if(GameBoard.enPas !== SQUARES.NO_SQ) { // if emp square is not no square then hash in ampersand
         finalKey ^= PieceKeys[GameBoard.enPas];
     }
     finalKey ^= CastleKeys[GameBoard.castlePerm]; // hash castle perms
