@@ -13,7 +13,7 @@ Research related to chess engines
 + Formal definition of maximin: ![alt text](img/maximin notation.PNG "Formal definition of maximin")
 + Calculating the maximin value of a player is done in a worst-case approach: for each possible action of the player, we check all possible actions of the other players and determine the worst possible combination of actions—the one that gives player i the smallest value. Then, we determine which action player i can take in order to make sure that this smallest value is the highest possible.
 + The minimax value of a player is the smallest value that the other players can force the player to receive, without knowing the player's actions; equivalently, it is the largest value the player can be sure to get when they know the actions of the other players.
-+ Formal definition of minimax: ![alt text](img/minimax notation.PNG "Formal definition of minimax")
++ Formal definition of minimax: ![alt text](img/minimax%20notation.PNG "Formal definition of minimax")
 
 #### Alpha-beta pruning
 + A search algorithm that seeks to decrease the number of nodes that are evaluated by the minimax algorithm in its search tree.
